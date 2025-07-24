@@ -15,7 +15,7 @@ class RolMiddleware
      */
     public function handle($request, Closure $next, ...$roles)
     {
-        if (!in_array(auth()->user()->rol, $roles)) {
+        if (!in_array(auth()->user()->rol_usuario, $roles)) {
             abort(403, 'No autorizado');
         }
         return $next($request);

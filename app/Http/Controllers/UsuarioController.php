@@ -27,10 +27,10 @@ class UsuarioController extends Controller
         Auth::login($usuario);
         
         // O devolver token (si usas API)
-        return response()->json([
-            'usuario' => $usuario,
-            'redirect' => $this->getRedirectByRole($usuario->rol_usuario)
-        ]);
+        // return response()->json([
+        //     'usuario' => $usuario,
+        //     'redirect' => $this->getRedirectByRole($usuario->rol_usuario)
+        // ]);
     }
     
     public function logout()

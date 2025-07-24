@@ -19,7 +19,7 @@ class Usuario extends Authenticatable
     protected $table = 'usuarios';
     protected $primaryKey = 'idUsuario';
     protected $fillable = ['usuario','contrasena', 'rol_usuario', 'puesto_usuario'];
-    protected $hidden = ['contrasena'];
+    protected $hidden = ['contrasena', 'remember_token'];
     
     public $timestamps = false;
     public function getAuthPassword() {
@@ -28,5 +28,9 @@ class Usuario extends Authenticatable
     public function examenesRealizados()
     {
         return $this->hasMany('App\Models\ExamenesRealizado', 'usuario_id', 'idUsuario');
+    }
+    public function getAuthIdentifierName()
+    {
+        return 'usuario';
     }
 }
