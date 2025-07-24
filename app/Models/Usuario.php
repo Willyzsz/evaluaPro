@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * @property integer $idUsuario
  * @property string $usuario
- * @property string $contrasena
+ * @property string $password
  * @property string $rol_usuario
  * @property integer $puesto_usuario
  * @property ExamenesRealizado[] $examenesRealizados
@@ -18,12 +18,12 @@ class Usuario extends Authenticatable
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'idUsuario';
-    protected $fillable = ['usuario','contrasena', 'rol_usuario', 'puesto_usuario'];
-    protected $hidden = ['contrasena', 'remember_token'];
+    protected $fillable = ['usuario','password', 'rol_usuario', 'puesto_usuario'];
+    protected $hidden = ['password', 'remember_token'];
     
     public $timestamps = false;
     public function getAuthPassword() {
-        return $this->contrasena;
+        return $this->password;
     }
     public function examenesRealizados()
     {

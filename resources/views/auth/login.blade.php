@@ -1,5 +1,5 @@
 {{-- resources/views/auth/login.blade.php --}}
-<x-guest-layout>
+<x-gradient-layout>
     <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md mx-4">
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center bg-blue-100 p-4 rounded-full mb-4">
@@ -29,12 +29,12 @@
 
             <!-- Password -->
             <div>
-                <x-input-label for="contrasena" :value="'Contraseña'" />
-                <x-text-input id="contrasena" class="block mt-1 w-full"
-                            type="contrasena"
-                            name="contrasena"
-                            required autocomplete="current-contrasena" />
-                <x-input-error :messages="$errors->get('contrasena')" class="mt-2" />
+                <x-input-label for="password" :value="'Contraseña'" />
+                <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <!-- Remember Me -->
@@ -59,5 +59,16 @@
                 @endif
             </div>
         </form>
+
+        <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button
+          class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
+        >
+          <i data-feather="log-out" class="w-4 h-4"></i>
+          Cerrar sesión
+        </button>
+        
+      </form>
     </div>
-</x-guest-layout>
+</x-gradient-layout>

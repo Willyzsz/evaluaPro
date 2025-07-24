@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'usuario' => ['required', 'string'],
-            'contrasena' => ['required', 'string'],
+            'password' => ['required', 'string'],
         ];
     }
 
@@ -41,11 +41,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('usuario', 'contrasena'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('usuario', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'usuario' => trans('auth.failed'),
+                'password' => trans('El usuario o la contraseña son incorrectos.'),
             ]);
         }
 
@@ -68,7 +68,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'usuario' => trans('auth.throttle', [
+            'password' => trans('Demasiados Intentos. Porfavor intente de nuevo en :seconds segundos. ', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),

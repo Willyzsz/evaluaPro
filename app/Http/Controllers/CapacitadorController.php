@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-
-class UsuarioController extends Controller
+class CapacitadorController extends Controller
 {
     public function index(): View
     {

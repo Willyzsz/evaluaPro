@@ -31,15 +31,16 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
+
         if ($user->rol_usuario === 'admin') {
-            return redirect()->intended('/admin');
+            return redirect('/dashboard');
         } elseif ($user->rol_usuario === 'capacitador') {
-            return redirect()->intended('/capacitador');
+            return redirect('/capacitador');
         } elseif ($user->rol_usuario === 'usuario') {
-            return redirect()->intended('/usuario');
+            return redirect('/usuario');
         }
         // fallback
-        return redirect()->intended('/dashboard');
+        return redirect('/');
     }
 
     /**
