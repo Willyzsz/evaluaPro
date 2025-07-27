@@ -33,4 +33,11 @@ class Usuario extends Authenticatable
     {
         return 'usuario';
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function examenesRealizadosCalificador()
+    {
+        return $this->hasMany('App\Models\ExamenesRealizado', 'usuario_calificador', 'idUsuario');
+    }
 }

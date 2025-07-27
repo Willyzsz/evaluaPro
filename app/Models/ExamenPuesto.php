@@ -49,4 +49,12 @@ class ExamenPuesto extends Model
     {
         return $this->belongsTo('App\Models\Puesto', 'puesto_id', 'idPuesto');
     }
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function departamento()
+    {
+        return $this->belongsTo('App\Models\Departamento', 'departamento_id', 'idDepartamento');
+    }
+
 }

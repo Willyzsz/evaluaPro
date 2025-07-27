@@ -13,6 +13,8 @@
   <body class="bg-gradient-to-br from-blue-50 to-cyan-100 min-h-screen font-sans" >
 
     <a href="/login">Login</a>
+    <x-logout-button/>
+    <a href="/dashboard">dashboard</a>
 
     <div class="flex min-h-screen">
       <!-- Menú lateral -->

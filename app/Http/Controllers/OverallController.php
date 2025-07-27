@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class AdminController extends Controller
+class OverallController extends Controller
 {
-
-    public function index(): View
+    public function welcome(): View
     {
-        return view('admin.dashboard');
+        return view('welcome');
+    }
+    public function dashboard(): View
+    {
+        return view('dashboard');
     }
 }

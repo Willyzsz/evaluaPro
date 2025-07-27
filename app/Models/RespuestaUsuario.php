@@ -41,6 +41,6 @@ class RespuestaUsuario extends Model
      */
     public function pregunta()
     {
-        return $this->belongsTo('App\Models\Pregunta', null, 'idPregunta');
+        return $this->belongsTo('App\Models\Pregunta', 'pregunta_id', 'idPregunta');
     }
 }

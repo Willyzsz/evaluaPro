@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class AdminController extends Controller
+class TemaController extends Controller
 {
 
     public function index(): View
     {
-        return view('admin.dashboard');
+        return view('dashboard.temas');
     }
+
 }

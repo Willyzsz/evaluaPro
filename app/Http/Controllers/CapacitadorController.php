@@ -12,6 +12,6 @@ class CapacitadorController extends Controller
 {
     public function index(): View
     {
-        return view('auth/dashboard');
+        return view('/welcome');
     }
 }

@@ -28,7 +28,7 @@ class Tema extends Model
     /**
      * @var array
      */
-    protected $fillable = ['curso_id', 'puesto_id', 'nombre_tema', 'descripcion_tema'];
+    protected $fillable = ['curso_id', 'puesto_id', 'nombre_tema', 'descripcion_tema', 'tema_url'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -46,12 +46,19 @@ class Tema extends Model
         return $this->hasMany('App\Models\ExamenesTema', 'tema_id', 'idTema');
     }
 
-    /**
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulas()
+    {
+        return $this->hasMany('App\Models\Reticula', 'examen_id', 'idExamen');
+    }
+        /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function puesto()
     {
-        return $this->belongsTo('App\Models\Puesto', 'tema_id', 'idPuesto');
+        return $this->belongsTo('App\Models\Puesto', 'puesto_id', 'idPuesto');
     }
 
     /**
@@ -59,6 +66,6 @@ class Tema extends Model
      */
     public function curso()
     {
-        return $this->belongsTo('App\Models\Curso', 'tema_id', 'idCurso');
+        return $this->belongsTo('App\Models\Curso', 'curso_id', 'idCurso');
     }
 }

@@ -5,32 +5,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property integer $departamento_id
  * @property integer $idDireccion
  * @property string $nombre_direccion
- * @property Departamento $departamento
+ * @property Departamento[] $departamentos
  */
-class Direcciones extends Model
+class Direccion extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'direcciones';
+    public $timestamps = false;
+
+
     /**
      * The primary key for the model.
      * 
      * @var string
      */
     protected $primaryKey = 'idDireccion';
-    public $timestamps = false;
-
 
     /**
      * @var array
      */
-    protected $fillable = ['departamento_id', 'nombre_direccion'];
+    protected $fillable = ['nombre_direccion'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function departamento()
+    public function departamentos()
     {
-        return $this->belongsTo('App\Models\Departamento', 'departamento_id', 'idDepartamento');
+        return $this->hasMany('App\Models\Departamento', 'direcciones_id', 'idDireccion');
     }
 }

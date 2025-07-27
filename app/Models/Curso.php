@@ -27,7 +27,7 @@ class Curso extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nombre_curso', 'descripcion_curso', 'fecha_inicio', 'fecha_fin'];
+    protected $fillable = ['nombre_curso', 'descripcion_curso', 'curso_url', 'fecha_inicio', 'fecha_fin'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -43,5 +43,12 @@ class Curso extends Model
     public function temas()
     {
         return $this->hasMany('App\Models\Tema', 'curso_id', 'idCurso');
+    }
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulas()
+    {
+        return $this->hasMany('App\Models\Reticula', 'curso_id', 'idCurso');
     }
 }

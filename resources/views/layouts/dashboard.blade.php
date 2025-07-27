@@ -13,7 +13,7 @@
   </style>
 </head>
 <body class="gradient-bg from-blue-50 to-cyan-100 min-h-screen font-sans">
-    <x-navbar-admin />
+    <x-navbar-dashboard />
     {{ $slot }}
 
     <script>

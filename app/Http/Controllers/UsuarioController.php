@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-
 
 class UsuarioController extends Controller
 {
     public function index(): View
     {
-        return view('auth/dashboard');
+        return view('/welcome');
     }
-}
+} 

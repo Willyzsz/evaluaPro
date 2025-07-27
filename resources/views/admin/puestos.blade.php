@@ -1,7 +1,7 @@
-{{-- resources/views/admin/examenes.blade.php --}}
+{{-- resources/views/admin/puestos.blade.php --}}
 <x-admin-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Gestión de Exámenes</h1>
+        <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Puestos</h1>
 
         <!-- Acciones -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
@@ -20,24 +20,21 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 text-sm text-gray-600">
                     <tr>
-                        <th class="px-6 py-3 text-left font-medium">Nombre del examen</th>
-                        <th class="px-6 py-3 text-left font-medium">Temas</th>
-                        <th class="px-6 py-3 text-left font-medium">Última edición</th>
-                        <th class="px-6 py-3 text-center font-medium">Acciones</th>
+                        <x-th>Nombre del examen</x-th>
+                        <x-th>Temas</x-th>
+                        <x-th>Última edición</x-th>
+                        <x-th class="text-center">Acciones</x-th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
                     <tr>
-                        <td class="px-6 py-4">Examen de Seguridad</td>
-                        <td class="px-6 py-4">EPP, Normas, Protocolos</td>
-                        <td class="px-6 py-4">20 Jul 2025</td>
-                        <td class="px-6 py-4 text-center">
-                            <div class="flex items-center justify-center gap-3">
-                                <a href="#" class="text-blue-600 hover:underline">Editar</a>
-                                <a href="#" class="text-green-600 hover:underline">Ver</a>
-                                <a href="#" class="text-red-600 hover:underline">Eliminar</a>
-                            </div>
-                        </td>
+                        <x-td>Examen de Seguridad</x-td>
+                        <x-td>EPP, Normas, Protocolos</x-td>
+                        <x-td>20 Jul 2025</x-td>
+                        <x-td class="text-center">
+                            <x-action-links />
+                            {{-- <x-action-links :id="$examen->id" /> --}}
+                        </x-td>
                     </tr>
                 </tbody>
             </table>

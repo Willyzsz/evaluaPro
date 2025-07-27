@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property ExamenesPuesto[] $examenesPuestos
  * @property ExamenesRealizado[] $examenesRealizados
  * @property ExamenesTema[] $examenesTemas
+ * @property Pregunta[] $preguntas
+ * @property Reticula[] $reticulas
  */
 class Examen extends Model
 {
@@ -68,5 +70,21 @@ class Examen extends Model
     public function examenesTemas()
     {
         return $this->hasMany('App\Models\ExamenesTema', 'examen_id', 'idExamen');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function preguntas()
+    {
+        return $this->hasMany('App\Models\Pregunta', 'examen_id', 'idExamen');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulas()
+    {
+        return $this->hasMany('App\Models\Reticula', 'examen_id', 'idExamen');
     }
 }

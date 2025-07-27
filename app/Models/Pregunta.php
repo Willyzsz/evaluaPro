@@ -25,7 +25,7 @@ class Preguntas extends Model
     /**
      * @var array
      */
-    protected $fillable = ['examen_id', 'texto', 'tipo', 'opciones', 'respuesta_correcta'];
+    protected $fillable = ['examen_id', 'texto', 'tipo', 'opciones', 'respuesta_correcta', 'imagen_url'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

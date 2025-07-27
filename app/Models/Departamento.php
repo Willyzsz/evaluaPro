@@ -5,41 +5,66 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property integer $puesto_id
+ * @property integer $direcciones_id
  * @property integer $idDepartamento
  * @property string $nombre_departamento
  * @property string $descripcion_departamento
- * @property Puesto $puesto
- * @property Direccione[] $direcciones
+ * @property Direccione $direccione
+ * @property Puesto[] $puestos
+ * @property Reticula[] $reticulas
  */
 class Departamento extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'departamentos';
+    public $timestamps = false;
+
+
     /**
      * The primary key for the model.
      * 
      * @var string
      */
     protected $primaryKey = 'idDepartamento';
-    public $timestamps = false;
 
     /**
      * @var array
      */
-    protected $fillable = ['puesto_id', 'nombre_departamento', 'descripcion_departamento'];
+    protected $fillable = ['direcciones_id', 'nombre_departamento', 'descripcion_departamento'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function puesto()
+    public function direccione()
     {
-        return $this->belongsTo('App\Models\Puesto', 'puesto_id', 'idPuesto');
+        return $this->belongsTo('App\Models\Direccione', 'direcciones_id', 'idDireccion');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function direcciones()
+    public function examenesPuestos()
     {
-        return $this->hasMany('App\Models\Direccione', 'departamento_id', 'idDepartamento');
+        return $this->hasMany('App\Models\ExamenesPuesto', 'departamento_id', 'idDepartamento');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function puestos()
+    {
+        return $this->hasMany('App\Models\Puesto', 'departamento_id', 'idDepartamento');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulas()
+    {
+        return $this->hasMany('App\Models\Reticula', 'departamento_id', 'idDepartamento');
     }
 }
