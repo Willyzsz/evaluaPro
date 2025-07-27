@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Reticula[] $reticulas
  * @property Tema[] $temas
  */
-class puestosTest extends Model
+class Puesto extends Model
 {
   /**
      * The table associated with the model.
@@ -22,6 +22,7 @@ class puestosTest extends Model
      * @var string
      */
     protected $table = 'puestos';
+    public $timestamps = false;
 
     /**
      * The primary key for the model.
@@ -65,5 +66,12 @@ class puestosTest extends Model
     public function temas()
     {
         return $this->hasMany('App\Models\Tema', 'puesto_id', 'idPuesto');
+    }
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function usuarios()
+    {
+        return $this->hasMany('App\Models\Usuario', 'puesto_usuario', 'idPuesto');
     }
 }

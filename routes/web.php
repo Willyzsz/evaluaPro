@@ -34,7 +34,18 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'rol:admin'])->group(function () {
-    Route::get('/gestion_usuarios', [GestionUsuarioController::class, 'index']);
+    Route::resource('usuarios', GestionUsuarioController::class)->parameters([
+        'usuarios' => 'usuario'
+        ])->names([
+            'index' => 'usuarios.index',
+            'create' => 'usuarios.create',
+            'store' => 'usuarios.store',
+            'show' => 'usuarios.show',
+            'edit' => 'usuarios.edit',
+            'update' => 'usuarios.update',
+            'destroy' => 'usuarios.destroy',
+        ]);
+    Route::get('/gestion_usuarios', [GestionUsuarioController::class, 'index'])->name('gestion_usuarios');
     Route::get('/gestion_puestos', [PuestoController::class, 'index']);
 });
 

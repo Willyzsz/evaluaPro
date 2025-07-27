@@ -21,7 +21,7 @@
 
     <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <!-- Card 1 - Gestión de Exámenes (Admin & Capacitador) -->
-      <x-card-admin 
+      <x-card-dashboard 
         color="blue"
         icon="file-text"
         title="Gestión de Exámenes"
@@ -32,7 +32,7 @@
 
       <!-- Card 2 - Gestión de Usuarios (Admin only) -->
       @if(auth()->user()->rol_usuario === 'admin')
-      <x-card-admin 
+      <x-card-dashboard 
         color="green"
         icon="users"        
         title="Gestión de Usuarios"
@@ -43,7 +43,7 @@
       @endif
 
       <!-- Card 3 - Gestión de Temas (Admin & Capacitador) -->
-      <x-card-admin 
+      <x-card-dashboard 
         color="red"
         icon="book"        
         title="Gestión de Temas"
@@ -54,7 +54,7 @@
       
       <!-- Card 4 - Gestión de Puestos (Admin only) -->
       @if(auth()->user()->rol_usuario === 'admin')
-      <x-card-admin 
+      <x-card-dashboard 
         color="yellow"
         icon="briefcase"        
         title="Gestión de Puestos"
@@ -65,7 +65,7 @@
       @endif
 
       <!-- Card 5 - Reportes y Estadísticas (Admin & Capacitador) -->
-      <x-card-admin 
+      <x-card-dashboard 
         color="purple"
         icon="bar-chart-2"        
         title="Reportes y Estadísticas"

@@ -16,11 +16,18 @@ return [
     'exists' => 'El :attribute seleccionado no es válido.',
     'string' => 'El campo :attribute debe ser una cadena de texto.',
     'integer' => 'El campo :attribute debe ser un número entero.',
+    'confirmation' => 'El campo :attribute no coincide.',
+    'confirmed' => 'El campo :attribute no coincide.',
 
     'attributes' => [
-        'nombre_examen' => 'nombre del examen',
-        'descripcion_examen' => 'descripción',
-        'duracion_examen' => 'duración',
-        'tema_id' => 'tema',
+        'nombre_examen' => 'Nombre del examen',
+        'descripcion_examen' => 'Descripción',
+        'duracion_examen' => 'Duración',
+        'tema_id' => 'Tema',
+        'password' => 'Contraseña',
+        'rol_usuario' => 'Rol',
+        'puesto_usuario' => 'Puesto',
+        'estatus' => 'Estado',
+        'fecha_ingreso' => 'Fecha de Ingreso',
     ],
 ];
