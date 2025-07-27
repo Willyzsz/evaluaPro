@@ -40,7 +40,18 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
 
 Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
     Route::get('/dashboard', [OverallController::class, 'dashboard']);
-    Route::get('/gestion_examenes', [ExamenController::class, 'index']);
+    Route::resource('examenes', ExamenController::class)->parameters([
+        'examenes' => 'examen'
+    ])->names([
+        'index' => 'examenes.index',
+        'create' => 'examenes.create',
+        'store' => 'examenes.store',
+        'show' => 'examenes.show',
+        'edit' => 'examenes.edit',
+        'update' => 'examenes.update',
+        'destroy' => 'examenes.destroy',
+    ]);
+    Route::get('/gestion_examenes', [ExamenController::class, 'index'])->name('gestion_examenes');
     Route::get('/gestion_temas', [TemaController::class, 'index']);
     Route::get('/gestion_reportes', [ReporteController::class, 'index']);
 });

@@ -1,9 +1,11 @@
-<div class="flex items-center justify-center gap-3">
-    <a href="" class="text-blue-600 hover:underline">Editar</a>
-    <a href="" class="text-green-600 hover:underline">Ver</a>
-    <a href="" class="text-red-600 hover:underline">Eliminar</a>
-</div>
+@props(['editUrl' => '#', 'showUrl' => '#', 'deleteUrl' => '#'])
 
-{{-- {{ route('examen.edit', $id) }} --}}
-{{-- {{ route('examen.show', $id) }} --}}
-{{-- {{ route('examen.delete', $id) }} --}}
+<div class="flex items-center justify-center gap-3">
+    <a href="{{ $editUrl }}" class="text-blue-600 hover:underline">Editar</a>
+    <a href="{{ $showUrl }}" class="text-green-600 hover:underline">Ver</a>
+    <form action="{{ $deleteUrl }}" method="POST" class="inline" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este examen?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="text-red-600 hover:underline bg-transparent border-none cursor-pointer">Eliminar</button>
+    </form>
+</div>

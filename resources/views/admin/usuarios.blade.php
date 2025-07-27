@@ -1,5 +1,5 @@
 {{-- resources/views/admin/usuarios.blade.php --}}
-<x-admin-layout>
+<x-dashboard-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Usuarios</h1>
 
@@ -40,4 +40,4 @@
             </table>
         </div>
     </div>
-</x-admin-layout>
+</x-dashboard-layout>

@@ -41,6 +41,16 @@ class Examen extends Model
     protected $fillable = ['tema_id', 'nombre_examen', 'duracion_examen', 'descripcion_examen'];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'idExamen';
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function tema()

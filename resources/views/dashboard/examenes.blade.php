@@ -2,10 +2,12 @@
 <x-dashboard-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Exámenes</h1>
+        
+        <x-success-message />
 
         <!-- Acciones -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-            <a href="#" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+            <a href="{{ route('examenes.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                 <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear nuevo examen
             </a>
 
@@ -22,20 +24,31 @@
                     <tr>
                         <x-th>Nombre del examen</x-th>
                         <x-th>Temas</x-th>
-                        <x-th>Última edición</x-th>
+                        <x-th>Descripción</x-th>
                         <x-th class="text-center">Acciones</x-th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    <tr>
-                        <x-td>Examen de Seguridad</x-td>
-                        <x-td>EPP, Normas, Protocolos</x-td>
-                        <x-td>20 Jul 2025</x-td>
-                        <x-td class="text-center">
-                            <x-action-links />
-                            {{-- <x-action-links :id="$examen->id" /> --}}
-                        </x-td>
-                    </tr>
+                    @forelse($examenes as $examen)
+                        <tr>
+                            <x-td>{{ $examen->nombre_examen }}</x-td>
+                            <x-td>{{ $examen->tema ? $examen->tema->nombre_tema : 'Sin tema' }}</x-td>
+                            <x-td>{{ $examen->descripcion_examen ? Str::limit($examen->descripcion_examen, 75) : 'Sin Descripcion' }}</x-td>
+                            <x-td class="text-center">
+                                <x-action-links 
+                                    :edit-url="route('examenes.edit', $examen->idExamen)"
+                                    :show-url="route('examenes.show', $examen->idExamen)"
+                                    :delete-url="route('examenes.destroy', $examen->idExamen)"
+                                />
+                            </x-td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <x-td colspan="4" class="text-center text-gray-500 py-8">
+                                No hay exámenes registrados
+                            </x-td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
