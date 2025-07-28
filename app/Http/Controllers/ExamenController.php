@@ -12,9 +12,19 @@ use Illuminate\View\View;
 
 class ExamenController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $examenes = Examen::with('tema')->get();
+        $search = $request->get('search');
+        $examenes = Examen::with('tema')
+        ->when($search, function($query) use ($search) {
+          $query->where(function ($q) use ($search) {
+            $q->where('nombre_examen', 'LIKE', "%{$search}%")
+            ->orWhereHas('tema', function($temaQuery) use ($search) {
+                $temaQuery->where('nombre_tema', 'LIKE', "%{$search}%");
+            });
+          });
+        })
+        ->get();
         return view('dashboard.examenes', compact('examenes'));
     }
 

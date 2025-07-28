@@ -52,7 +52,7 @@
         </div>
 
         <!-- Resultados de búsqueda y filtros -->
-        @if(request('search') || request('fecha_order') || request('estatus_filter'))
+        @if(request('search') || request('estatus_filter'))
             <div class="mb-4 text-sm text-gray-600">
                 <span class="font-medium">{{ $usuarios->count() }}</span> resultado(s) encontrado(s)
                 @if(request('search'))

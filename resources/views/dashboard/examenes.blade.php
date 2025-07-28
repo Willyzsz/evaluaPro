@@ -10,10 +10,26 @@
             <a href="{{ route('examenes.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                 <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear nuevo examen
             </a>
+            <!-- Search Form --> 
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-1/3">
 
-            <div class="relative w-full sm:w-1/3">
-                <input type="text" placeholder="Buscar examen..." class="w-full border-gray-300 rounded-xl py-2 pl-10 pr-4 focus:ring-blue-500 focus:border-blue-500">
-                <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400 w-4 h-4"></i>
+                <form method="GET" action="{{ route('examenes.index') }}" class="relative flex-1">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        value="{{ request('search') }}"
+                        placeholder="Buscar examen..." 
+                        class="w-full border-gray-300 rounded-xl py-2 pl-10 pr-4 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                    <button type="submit" class="absolute left-3 top-2.5 text-gray-400 hover:text-gray-600">
+                        <i data-feather="search" class="w-4 h-4"></i>
+                    </button>
+                    @if(request('search'))
+                        <a href="{{ route('examenes.index') }}" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600">
+                            <i data-feather="x" class="w-4 h-4"></i>
+                        </a>
+                    @endif
+                </form>
             </div>
         </div>
 

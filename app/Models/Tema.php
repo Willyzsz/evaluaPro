@@ -28,7 +28,17 @@ class Tema extends Model
     /**
      * @var array
      */
-    protected $fillable = ['curso_id', 'puesto_id', 'nombre_tema', 'descripcion_tema', 'tema_url'];
+    protected $fillable = ['curso_id', 'puesto_id', 'nombre_tema', 'descripcion_tema', 'tema_url', 'curso_id', 'puesto_id', 'departamento_id'];
+     
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'idTema';
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -67,5 +77,12 @@ class Tema extends Model
     public function curso()
     {
         return $this->belongsTo('App\Models\Curso', 'curso_id', 'idCurso');
+    }
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function departamento()
+    {
+        return $this->belongsTo('App\Models\Departamento', 'departamento_id', 'idDepartamento');
     }
 }

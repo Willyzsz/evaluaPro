@@ -29,7 +29,9 @@
                 <!-- Duración -->
                 <div>
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Duración</h3>
+                    @if($examen->duracion_examen != '')
                     <p class="text-gray-600">{{ $examen->duracion_examen }} minutos</p>
+                    @endif
                 </div>
 
                 <!-- Descripción -->

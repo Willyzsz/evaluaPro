@@ -25,7 +25,9 @@
                     <!-- Tema -->
                     <div>
                         <x-input-label for="tema_id" value="Tema" />
-                        <select id="tema_id" name="tema_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="tema_id" name="tema_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:ring-blue-600"
+                        required>
                             <option value="">Seleccionar tema</option>
                             @foreach($temas as $tema)
                                 <option value="{{ $tema->idTema }}" 
@@ -41,7 +43,7 @@
                     <div>
                         <x-input-label for="duracion_examen" value="Duración (minutos)" />
                         <x-text-input id="duracion_examen" name="duracion_examen" type="number" class="mt-1 block w-full" 
-                            value="{{ old('duracion_examen', $examen->duracion_examen) }}" min="1" required />
+                            value="{{ old('duracion_examen', $examen->duracion_examen) }}" min="1" />
                         <x-input-error :messages="$errors->get('duracion_examen')" class="mt-2" />
                     </div>
 
@@ -50,7 +52,7 @@
                         <x-input-label for="descripcion_examen" value="Descripción" />
                         <textarea id="descripcion_examen" name="descripcion_examen" rows="4" 
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
-                            required>{{ old('descripcion_examen', $examen->descripcion_examen) }}</textarea>
+                            >{{ old('descripcion_examen', $examen->descripcion_examen) }}</textarea>
                         <x-input-error :messages="$errors->get('descripcion_examen')" class="mt-2" />
                     </div>
                 </div>

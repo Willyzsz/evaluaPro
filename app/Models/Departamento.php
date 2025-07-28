@@ -36,6 +36,16 @@ class Departamento extends Model
      */
     protected $fillable = ['direcciones_id', 'nombre_departamento', 'descripcion_departamento'];
 
+        /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'idDepartamento';
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -66,5 +76,12 @@ class Departamento extends Model
     public function reticulas()
     {
         return $this->hasMany('App\Models\Reticula', 'departamento_id', 'idDepartamento');
+    }
+        /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function temas()
+    {
+        return $this->hasMany('App\Models\Tema', 'departamento_id', 'idDepartamento');
     }
 }

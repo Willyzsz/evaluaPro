@@ -63,7 +63,18 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'destroy' => 'examenes.destroy',
     ]);
     Route::get('/gestion_examenes', [ExamenController::class, 'index'])->name('gestion_examenes');
-    Route::get('/gestion_temas', [TemaController::class, 'index']);
+    Route::resource('temas', TemaController::class)->parameters([
+        'temas' => 'tema'
+    ])->names([
+        'index' => 'temas.index',
+        'create' => 'temas.create',
+        'store' => 'temas.store',
+        'show' => 'temas.show',
+        'edit' => 'temas.edit',
+        'update' => 'temas.update',
+        'destroy' => 'temas.destroy',
+    ]);
+    Route::get('/gestion_temas', [TemaController::class, 'index'])->name('gestion_temas');
     Route::get('/gestion_reportes', [ReporteController::class, 'index']);
 });
 
