@@ -17,8 +17,7 @@ class GestionUsuarioController extends Controller
     public function index(Request $request): View
     {
         $search = $request->get('search');
-        $fechaOrder = $request->get('fecha_order', 'desc');
-        $estatusFilter = $request->get('estatus_filter', '');
+        $estatusFilter = $request->get('estatus_filter', 'none');
         
         $usuarios = Usuario::with('puesto.departamento')
             ->where('rol_usuario', '!=', 'admin')
@@ -34,15 +33,12 @@ class GestionUsuarioController extends Controller
                           });
                 });
             })
-            ->when($estatusFilter !== '', function ($query) use ($estatusFilter) {
+            ->when($estatusFilter !== 'none', function ($query) use ($estatusFilter) {
                 $query->where('estatus', $estatusFilter);
-            })
-            ->when($fechaOrder, function ($query) use ($fechaOrder) {
-                $query->orderBy('fecha_ingreso', $fechaOrder);
             })
             ->get();
             
-        return view('admin.usuarios', compact('usuarios', 'fechaOrder', 'estatusFilter'));
+        return view('admin.usuarios', compact('usuarios', 'estatusFilter'));
     }
     public function create(): View
     {

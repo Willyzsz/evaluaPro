@@ -37,16 +37,9 @@
                     @if(request('search'))
                         <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
-                    
-                    <!-- Fecha Order Filter -->
-                    <select name="fecha_order" class="border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
-                        <option value="desc" {{ $fechaOrder === 'desc' ? 'selected' : '' }}>Más recientes</option>
-                        <option value="asc" {{ $fechaOrder === 'asc' ? 'selected' : '' }}>Más antiguos</option>
-                    </select>
-
                     <!-- Estatus Filter -->
                     <select name="estatus_filter" class="border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
-                        <option value="" {{ $estatusFilter === '' ? 'selected' : '' }}>Todos</option>
+                        <option value="none" {{ $estatusFilter === 'none' ? 'selected' : '' }}>Todos</option>
                         <option value="1" {{ $estatusFilter === '1' ? 'selected' : '' }}>Activos</option>
                         <option value="0" {{ $estatusFilter === '0' ? 'selected' : '' }}>Inactivos</option>
                     </select>
@@ -65,15 +58,12 @@
                 @if(request('search'))
                     para "<span class="font-medium">{{ request('search') }}</span>"
                 @endif
-                @if(request('estatus_filter'))
+                @if(request()->has('estatus_filter'))
                     @if(request('estatus_filter') === '1')
                         - <span class="font-medium">Solo Activos</span>
-                    @elseif(request('estatus_filter') === '0')
+                    @elseif(request('estatus_filter') == '0')
                         - <span class="font-medium">Solo Inactivos</span>
                     @endif
-                @endif
-                @if(request('fecha_order'))
-                    - <span class="font-medium">{{ $fechaOrder === 'desc' ? 'Más recientes primero' : 'Más antiguos primero' }}</span>
                 @endif
                 <a href="{{ route('usuarios.index') }}" class="ml-2 text-blue-600 hover:text-blue-800">Limpiar filtros</a>
             </div>
