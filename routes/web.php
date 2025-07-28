@@ -46,7 +46,18 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
             'destroy' => 'usuarios.destroy',
         ]);
     Route::get('/gestion_usuarios', [GestionUsuarioController::class, 'index'])->name('gestion_usuarios');
-    Route::get('/gestion_puestos', [PuestoController::class, 'index']);
+    Route::resource('puestos', PuestoController::class)->parameters([
+        'puestos' => 'puesto'
+        ])->names([
+            'index' => 'puestos.index',
+            'create' => 'puestos.create',
+            'store' => 'puestos.store',
+            'show' => 'puestos.show',
+            'edit' => 'puestos.edit',
+            'update' => 'puestos.update',
+            'destroy' => 'puestos.destroy',
+        ]);
+    Route::get('/gestion_puestos', [PuestoController::class, 'index'])->name('gestion_puestos');
 });
 
 Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {

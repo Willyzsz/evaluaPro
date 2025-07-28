@@ -51,7 +51,7 @@
                     <div class="md:col-span-2">
                         <x-input-label for="descripcion_examen" value="Descripción" />
                         <textarea id="descripcion_examen" name="descripcion_examen" rows="4" 
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
                             >{{ old('descripcion_examen', $examen->descripcion_examen) }}</textarea>
                         <x-input-error :messages="$errors->get('descripcion_examen')" class="mt-2" />
                     </div>
