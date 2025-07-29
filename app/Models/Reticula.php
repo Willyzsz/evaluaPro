@@ -38,22 +38,14 @@ class Reticula extends Model
     /**
      * @var array
      */
-    protected $fillable = ['curso_id', 'nombre_reticula', 'tema_id', 'examen_id', 'puesto_id', 'departamento_id'];
+    protected $fillable = ['puesto_id', 'departamento_id', 'nombre_reticula'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function curso()
+    public function puesto()
     {
-        return $this->belongsTo('App\Models\Curso', 'curso_id', 'idCurso');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function examen()
-    {
-        return $this->belongsTo('App\Models\Examen', 'examen_id', 'idExamen');
+        return $this->belongsTo('App\Models\Puesto', 'puesto_id', 'idPuesto');
     }
 
     /**
@@ -65,18 +57,26 @@ class Reticula extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tema()
+    public function reticulasCursos()
     {
-        return $this->belongsTo('App\Models\Tema', 'tema_id', 'idTema');
+        return $this->hasMany('App\Models\ReticulasCurso', 'reticula_id', 'idReticula');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function puesto()
+    public function reticulasExamenes()
     {
-        return $this->belongsTo('App\Models\Puesto', 'puesto_id', 'idPuesto');
+        return $this->hasMany('App\Models\ReticulasExamene', 'reticula_id', 'idReticula');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulasTemas()
+    {
+        return $this->hasMany('App\Models\ReticulasTema', 'reticula_id', 'idReticula');
     }
 }

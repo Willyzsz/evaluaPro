@@ -8,33 +8,46 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $idCurso
  * @property string $nombre_curso
  * @property string $descripcion_curso
- * @property string $fecha_inicio
- * @property string $fecha_fin
+ * @property string $curso_url
  * @property ExamenesRealizado[] $examenesRealizados
+ * @property ReticulasCurso[] $reticulasCursos
  * @property Tema[] $temas
  */
-class Curso extends Model
+class CursoTest extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'cursos';
+
     /**
      * The primary key for the model.
      * 
      * @var string
      */
     protected $primaryKey = 'idCurso';
-    public $timestamps = false;
-
 
     /**
      * @var array
      */
-    protected $fillable = ['nombre_curso', 'descripcion_curso', 'curso_url', 'fecha_inicio', 'fecha_fin'];
+    protected $fillable = ['nombre_curso', 'descripcion_curso', 'curso_url'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function examenesRealizados()
     {
-        return $this->hasMany('App\Models\ExamenesRealizado', 'curso_id', 'idCurso');
+        return $this->hasMany('App\Models\ExamenesRealizado', null, 'idCurso');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulasCursos()
+    {
+        return $this->hasMany('App\Models\ReticulasCurso', null, 'idCurso');
     }
 
     /**
@@ -42,14 +55,6 @@ class Curso extends Model
      */
     public function temas()
     {
-        return $this->hasMany('App\Models\Tema', 'curso_id', 'idCurso');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function reticulasCursos()
-    {
-        return $this->hasMany('App\Models\ReticulasCurso', 'curso_id', 'idCurso');
+        return $this->hasMany('App\Models\Tema', null, 'idCurso');
     }
 }

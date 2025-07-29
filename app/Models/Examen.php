@@ -93,8 +93,8 @@ class Examen extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function reticulas()
+    public function reticulasExamenes()
     {
-        return $this->hasMany('App\Models\Reticula', 'examen_id', 'idExamen');
+        return $this->hasMany('App\Models\ReticulasExamene', 'examen_id', 'idExamen');
     }
 }

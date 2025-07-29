@@ -40,11 +40,8 @@
                 <thead class="bg-gray-50 text-sm text-gray-600">
                     <tr>
                         <x-th>Nombre del reticula</x-th>
-                        <x-th>Tema</x-th>
-                        <x-th>Examen</x-th>
                         <x-th>Puesto</x-th>
                         <x-th>Departamento</x-th>
-                        <x-th>Curso</x-th>
                         <x-th class="text-center">Acciones</x-th>
                     </tr>
                 </thead>
@@ -52,11 +49,8 @@
                     @forelse($reticulas as $reticula)
                         <tr>
                             <x-td>{{ $reticula->nombre_reticula }}</x-td>
-                            <x-td>{{ $reticula->tema ? $reticula->tema->nombre_tema : 'Sin tema' }}</x-td>
-                            <x-td>{{ $reticula->examen ? $reticula->examen->nombre_examen : 'Sin examen' }}</x-td>
                             <x-td>{{ $reticula->puesto ? $reticula->puesto->nombre_puesto : 'Sin puesto' }}</x-td>
                             <x-td>{{ $reticula->departamento ? $reticula->departamento->nombre_departamento : 'Sin departamento' }}</x-td>
-                            <x-td>{{ $reticula->curso ? $reticula->curso->nombre_curso : 'Sin curso' }}</x-td>
                             <x-td class="text-center">
                                 <x-action-links 
                                     :edit-url="route('reticulas.edit', $reticula->idReticula)"

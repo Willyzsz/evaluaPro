@@ -22,40 +22,6 @@
                         <x-input-error :messages="$errors->get('nombre_reticula')" class="mt-2" />
                     </div>
 
-                    <!-- Tema -->
-                    <div>
-                        <x-input-label for="tema_id" value="Tema" />
-                        <select id="tema_id" name="tema_id"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:ring-blue-600"
-                        required>
-                            <option value="">Seleccionar tema</option>
-                            @foreach($temas as $tema)
-                                <option value="{{ $tema->idTema }}" 
-                                    {{ old('tema_id', $reticula->tema_id) == $tema->idTema ? 'selected' : '' }}>
-                                    {{ $tema->nombre_tema }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('tema_id')" class="mt-2" />
-                    </div>
-
-                    <!-- Examen -->
-                    <div>
-                        <x-input-label for="examen_id" value="Examen" />
-                        <select id="examen_id" name="examen_id"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:ring-blue-600"
-                        required>
-                            <option value="">Seleccionar examen</option>
-                            @foreach($examenes as $examen)
-                                <option value="{{ $examen->idExamen }}" 
-                                    {{ old('examen_id', $reticula->examen_id) == $examen->idExamen ? 'selected' : '' }}>
-                                    {{ $examen->nombre_examen }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('examen_id')" class="mt-2" />
-                    </div>
-
                     <!-- Puesto -->
                     <div>
                         <x-input-label for="puesto_id" value="Puesto" />
@@ -90,22 +56,6 @@
                         <x-input-error :messages="$errors->get('departamento_id')" class="mt-2" />
                     </div>
 
-                    <!-- Curso -->
-                    <div>
-                        <x-input-label for="curso_id" value="Curso" />
-                        <select id="curso_id" name="curso_id"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:ring-blue-600"
-                        required>
-                            <option value="">Seleccionar curso</option>
-                            @foreach($cursos as $curso)
-                                <option value="{{ $curso->idCurso }}" 
-                                    {{ old('curso_id', $reticula->curso_id) == $curso->idCurso ? 'selected' : '' }}>
-                                    {{ $curso->nombre_curso }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('curso_id')" class="mt-2" />
-                    </div>
                 </div>
 
                 <div class="flex items-center justify-end mt-6 gap-4">

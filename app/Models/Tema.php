@@ -56,13 +56,14 @@ class Tema extends Model
         return $this->hasMany('App\Models\ExamenesTema', 'tema_id', 'idTema');
     }
 
-        /**
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function reticulas()
+    public function reticulasTemas()
     {
-        return $this->hasMany('App\Models\Reticula', 'examen_id', 'idExamen');
+        return $this->hasMany('App\Models\ReticulasTema', 'tema_id', 'idTema');
     }
+
         /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

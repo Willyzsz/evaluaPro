@@ -20,18 +20,6 @@
                     <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ $reticula->nombre_reticula }}</h2>
                 </div>
 
-                <!-- Tema -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Tema</h3>
-                    <p class="text-gray-600">{{ $reticula->tema ? $reticula->tema->nombre_tema : 'Sin tema asignado' }}</p>
-                </div>
-
-                <!-- Examen -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Examen</h3>
-                    <p class="text-gray-600">{{ $reticula->examen ? $reticula->examen->nombre_examen : 'Sin examen asignado' }}</p>
-                </div>
-
                 <!-- Puesto -->
                 <div>
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Puesto</h3>
@@ -44,12 +32,6 @@
                     <p class="text-gray-600">{{ $reticula->departamento ? $reticula->departamento->nombre_departamento : 'Sin departamento asignado' }}</p>
                 </div>
 
-                <!-- Curso -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Curso</h3>
-                    <p class="text-gray-600">{{ $reticula->curso ? $reticula->curso->nombre_curso : 'Sin curso asignado' }}</p>
-                </div>
-
                 <!-- Información Adicional -->
                 <div class="md:col-span-2">
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Información Adicional</h3>
@@ -59,24 +41,12 @@
                             <p class="text-gray-600">{{ $reticula->idReticula }}</p>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-700">Tema ID</h4>
-                            <p class="text-gray-600">{{ $reticula->tema_id ?? 'No asignado' }}</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-700">Examen ID</h4>
-                            <p class="text-gray-600">{{ $reticula->examen_id ?? 'No asignado' }}</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
                             <h4 class="font-medium text-gray-700">Puesto ID</h4>
                             <p class="text-gray-600">{{ $reticula->puesto_id ?? 'No asignado' }}</p>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <h4 class="font-medium text-gray-700">Departamento ID</h4>
                             <p class="text-gray-600">{{ $reticula->departamento_id ?? 'No asignado' }}</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-700">Curso ID</h4>
-                            <p class="text-gray-600">{{ $reticula->curso_id ?? 'No asignado' }}</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +63,7 @@
                     </button>
                 </form>
                 <a href="{{ route('preguntas.index', $reticula) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
-                    <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear/Ver Preguntas
+                    <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear/Ver Temas,Examenes y Cursos
                 </a>
             </div>
         </div>
