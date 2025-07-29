@@ -22,4 +22,8 @@ class OverallController extends Controller
     {
         return view('admin.dashboard-puestos');
     }
+    public function dashboardTemas(): View
+    {
+        return view('dashboard.dashboard-temas');
+    }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Puesto;
 use App\Models\Departamento;
+use Illuminate\Database\QueryException;
 
 
 class PuestoController extends Controller

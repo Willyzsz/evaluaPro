@@ -11,6 +11,7 @@ use App\Models\Curso;
 use App\Models\Puesto;
 use App\Models\Departamento;
 use App\Models\Tema;
+use Illuminate\Database\QueryException;
 
 
 class TemaController extends Controller

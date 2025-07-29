@@ -10,6 +10,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\GestionUsuarioController;
 use App\Http\Controllers\TemaController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReporteController;
 
@@ -110,7 +111,18 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'update' => 'temas.update',
         'destroy' => 'temas.destroy',
     ]);
-    Route::get('/gestion_temas', [TemaController::class, 'index'])->name('gestion_temas');
+    Route::resource('cursos', CursoController::class)->parameters([
+        'cursos' => 'curso'
+    ])->names([
+        'index' => 'cursos.index',
+        'create' => 'cursos.create',
+        'store' => 'cursos.store',
+        'show' => 'cursos.show',
+        'edit' => 'cursos.edit',
+        'update' => 'cursos.update',
+        'destroy' => 'cursos.destroy',
+    ]);
+    Route::get('/gestion_temas', [OverallController::class, 'dashboardTemas'])->name('gestion_temas');
     Route::get('/gestion_reportes', [ReporteController::class, 'index']);
 });
 

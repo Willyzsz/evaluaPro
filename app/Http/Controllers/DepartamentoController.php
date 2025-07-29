@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Departamento;
 use App\Models\Direccion;
+use Illuminate\Database\QueryException;
 
 
 class DepartamentoController extends Controller
