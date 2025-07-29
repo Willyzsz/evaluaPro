@@ -13,6 +13,7 @@ use App\Http\Controllers\TemaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\PreguntaController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -98,6 +99,17 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'edit' => 'examenes.edit',
         'update' => 'examenes.update',
         'destroy' => 'examenes.destroy',
+    ]);
+    Route::resource('examenes.preguntas', PreguntaController::class)->parameters([
+        'examenes' => 'examen',
+        'preguntas' => 'pregunta'
+    ])->names([
+        'index' => 'preguntas.index',
+        'create' => 'preguntas.create',
+        'store' => 'preguntas.store',
+        'edit' => 'preguntas.edit',
+        'update' => 'preguntas.update',
+        'destroy' => 'preguntas.destroy',
     ]);
     Route::get('/gestion_examenes', [ExamenController::class, 'index'])->name('gestion_examenes');
     Route::resource('temas', TemaController::class)->parameters([

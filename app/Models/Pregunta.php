@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $respuesta_correcta
  * @property Examene $examene
  */
-class Preguntas extends Model
+class Pregunta extends Model
 {
     /**
      * The primary key for the model.
@@ -21,17 +21,28 @@ class Preguntas extends Model
      * @var string
      */
     protected $primaryKey = 'idPregunta';
+    public $timestamps = false;
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'idPregunta';
+    }
 
     /**
      * @var array
      */
-    protected $fillable = ['examen_id', 'texto', 'tipo', 'opciones', 'respuesta_correcta', 'imagen_url'];
+    protected $fillable = ['examen_id', 'texto', 'tipo', 'opciones', 'respuesta_correcta', 'imagen', 'puntos'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function examene()
+    public function examen()
     {
-        return $this->belongsTo('App\Models\Examene', 'examen_id', 'idExamen');
+        return $this->belongsTo('App\Models\Examen', 'examen_id', 'idExamen');
     }
 }
