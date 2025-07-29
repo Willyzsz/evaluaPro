@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Puesto;
+use App\Models\Departamento;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -43,7 +44,8 @@ class GestionUsuarioController extends Controller
     public function create(): View
     {
         $puestos = Puesto::all();
-        return view('admin.usuarios.create', compact('puestos'));
+        $departamentos = Departamento::all();
+        return view('admin.usuarios.create', compact('puestos', 'departamentos'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -78,7 +80,8 @@ class GestionUsuarioController extends Controller
     public function edit(Usuario $usuario): View
     {
         $puestos = Puesto::all();
-        return view('admin.usuarios.edit', compact('usuario', 'puestos'));
+        $departamentos = Departamento::all();
+        return view('admin.usuarios.edit', compact('usuario', 'puestos', 'departamentos'));
     }
 
     public function update(Request $request, Usuario $usuario): RedirectResponse

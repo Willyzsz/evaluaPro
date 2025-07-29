@@ -6,6 +6,8 @@ use App\Http\Controllers\CapacitadorController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OverallController;
 use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\GestionUsuarioController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\PuestoController;
@@ -57,7 +59,30 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
             'update' => 'puestos.update',
             'destroy' => 'puestos.destroy',
         ]);
-    Route::get('/gestion_puestos', [PuestoController::class, 'index'])->name('gestion_puestos');
+        Route::resource('departamentos', DepartamentoController::class)->parameters([
+            'departamentos' => 'departamento'
+            ])->names([
+                'index' => 'departamentos.index',
+                'create' => 'departamentos.create',
+                'store' => 'departamentos.store',
+                'show' => 'departamentos.show',
+                'edit' => 'departamentos.edit',
+                'update' => 'departamentos.update',
+                'destroy' => 'departamentos.destroy',
+            ]);
+        Route::resource('direcciones', DireccionController::class)->parameters([
+            'direcciones' => 'direcciones'
+            ])->names([
+                'index' => 'direcciones.index',
+                'create' => 'direcciones.create',
+                'store' => 'direcciones.store',
+                'show' => 'direcciones.show',
+                'edit' => 'direcciones.edit',
+                'update' => 'direcciones.update',
+                'destroy' => 'direcciones.destroy',
+            ]);
+                  
+    Route::get('/gestion_puestos', [OverallController::class, 'dashboardPuestos'])->name('gestion_puestos');
 });
 
 Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {

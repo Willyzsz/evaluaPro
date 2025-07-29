@@ -49,9 +49,9 @@ class Departamento extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function direccione()
+    public function direccion()
     {
-        return $this->belongsTo('App\Models\Direccione', 'direcciones_id', 'idDireccion');
+        return $this->belongsTo('App\Models\Direccion', 'direcciones_id', 'idDireccion');
     }
 
     /**

@@ -22,7 +22,7 @@ class PuestoController extends Controller
           $query->where(function ($q) use ($search) {
             $q->where('nombre_puesto', 'LIKE', "%{$search}%")
             ->orWhereHas('departamento', function($departamentoQuery) use ($search) {
-                $departamentoQuery->where('nombre_tema', 'LIKE', "%{$search}%");
+                $departamentoQuery->where('nombre_departamento', 'LIKE', "%{$search}%");
             });
           });
         })
@@ -46,7 +46,7 @@ class PuestoController extends Controller
 
         Puesto::create([
             'nombre_puesto' => $request->nombre_puesto,
-            'descripcion_puesto' => $request->descripcion_examen,
+            'descripcion_puesto' => $request->descripcion_puesto,
             'departamento_id' => $request->departamento_id,
         ]);
 

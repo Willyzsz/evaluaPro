@@ -62,7 +62,7 @@
                             <option value="">Seleccionar puesto</option>
                             @foreach($puestos as $puesto)
                                 <option value="{{ $puesto->idPuesto }}" {{ old('puesto_id') == $puesto->idPuesto ? 'selected' : '' }}>
-                                    {{ $puesto->nombre_puesto }}
+                                    {{ $puesto->nombre_puesto }} - {{ $puesto->departamento->nombre_departamento}}
                                 </option>
                             @endforeach
                         </select>

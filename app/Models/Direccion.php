@@ -27,6 +27,15 @@ class Direccion extends Model
      */
     protected $primaryKey = 'idDireccion';
 
+        /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'idDireccion';
+    }
     /**
      * @var array
      */

@@ -23,7 +23,15 @@
     {{ $slot }}
 
     <script>
+      feather.replace();
+      function togglePasswordVisibility(inputId, button) {
+        const input = document.getElementById(inputId);
+        const isVisible = input.type === 'text';
+        
+        input.type = isVisible ? 'password' : 'text';
+        button.innerHTML = `<i data-feather="${isVisible ? 'eye' : 'eye-off'}" class="w-5 h-5"></i>`;
         feather.replace();
+      }
     </script>
 </body>
 </html>

@@ -18,4 +18,8 @@ class OverallController extends Controller
     {
         return view('dashboard');
     }
+    public function dashboardPuestos(): View
+    {
+        return view('admin.dashboard-puestos');
+    }
 }

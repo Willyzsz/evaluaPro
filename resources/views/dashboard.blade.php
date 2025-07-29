@@ -58,7 +58,7 @@
         color="yellow"
         icon="briefcase"        
         title="Gestión de Puestos"
-        description="Crear, editar, revisar y asignar Puestos"
+        description="Crear, editar, revisar y asignar Puestos, Departamentos y Direcciones"
         link="/gestion_puestos"
         linkLabel="Ver Puestos →"
       />

@@ -21,12 +21,18 @@ class TemaController extends Controller
         $search = $request->get('search');
         $temas = Tema::with('curso', 'puesto', 'departamento')
         ->when($search, function($query) use ($search) {
-          $query->where(function ($q) use ($search) {
-            $q->where('nombre_tema', 'LIKE', "%{$search}%")
-            ->orWhereHas('curso', function($cursoQuery) use ($search) {
-                $cursoQuery->where('nombre_curso', 'LIKE', "%{$search}%");
+            $query->where(function ($q) use ($search) {
+                $q->where('nombre_tema', 'LIKE', "%{$search}%")
+                  ->orWhereHas('curso', function($cursoQuery) use ($search) {
+                      $cursoQuery->where('nombre_curso', 'LIKE', "%{$search}%");
+                  })
+                  ->orWhereHas('puesto', function($puestoQuery) use ($search) {
+                      $puestoQuery->where('nombre_puesto', 'LIKE', "%{$search}%");
+                  })
+                  ->orWhereHas('departamento', function($depQuery) use ($search) {
+                      $depQuery->where('nombre_departamento', 'LIKE', "%{$search}%");
+                  });
             });
-          });
         })
         ->get();
         return view('dashboard.temas', compact('temas'));
