@@ -12,7 +12,7 @@ use App\Http\Controllers\GestionUsuarioController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PuestoController;
-use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ReticulaController;
 use App\Http\Controllers\PreguntaController;
 
 
@@ -135,7 +135,18 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'destroy' => 'cursos.destroy',
     ]);
     Route::get('/gestion_temas', [OverallController::class, 'dashboardTemas'])->name('gestion_temas');
-    Route::get('/gestion_reportes', [ReporteController::class, 'index']);
+    Route::resource('reticulas', ReticulaController::class)->parameters([
+        'reticulas' => 'reticula'
+    ])->names([
+        'index' => 'reticulas.index',
+        'create' => 'reticulas.create',
+        'store' => 'reticulas.store',
+        'show' => 'reticulas.show',
+        'edit' => 'reticulas.edit',
+        'update' => 'reticulas.update',
+        'destroy' => 'reticulas.destroy',
+    ]);
+    Route::get('/gestion_reticula', [ReticulaController::class, 'index']);
 });
 
 Route::middleware(['auth', 'rol:capacitador'])->group(function () {

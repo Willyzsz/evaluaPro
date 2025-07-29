@@ -68,10 +68,10 @@
       <x-card-dashboard 
         color="purple"
         icon="bar-chart-2"        
-        title="Reportes y Estadísticas"
-        description="Generar reportes detallados y visualizar métricas."
-        link="/gestion_reportes"
-        linkLabel="Ver reportes →"
+        title="Reticulas"
+        description="Generar reticulas por puesto y departamento."
+        link="/gestion_reticula"
+        linkLabel="Ver reticulas →"
       />
     </div>
   </div>

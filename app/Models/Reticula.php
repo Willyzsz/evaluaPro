@@ -25,6 +25,8 @@ class Reticula extends Model
      * @var string
      */
     protected $table = 'reticulas';
+    public $timestamps = false;
+
 
     /**
      * The primary key for the model.
@@ -36,7 +38,7 @@ class Reticula extends Model
     /**
      * @var array
      */
-    protected $fillable = ['curso_id', 'nombre_retucula', 'tema_id', 'examen_id', 'puesto_id', 'departamento_id'];
+    protected $fillable = ['curso_id', 'nombre_reticula', 'tema_id', 'examen_id', 'puesto_id', 'departamento_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -49,9 +51,9 @@ class Reticula extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function examene()
+    public function examen()
     {
-        return $this->belongsTo('App\Models\Examene', 'examen_id', 'idExamen');
+        return $this->belongsTo('App\Models\Examen', 'examen_id', 'idExamen');
     }
 
     /**

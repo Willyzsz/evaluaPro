@@ -90,7 +90,7 @@ class ExamenController extends Controller
         try {
             $examen->delete();
             return redirect()->route('examen.index')
-                ->with('success', 'Puesto eliminado exitosamente.');
+                ->with('success', 'Examen eliminado exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
                 return redirect()->route('examen.index')
