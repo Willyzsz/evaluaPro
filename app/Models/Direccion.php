@@ -39,7 +39,7 @@ class Direccion extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nombre_direccion'];
+    protected $fillable = ['nombre_direccion', 'descripcion_direccion'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

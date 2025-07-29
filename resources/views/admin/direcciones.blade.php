@@ -1,33 +1,32 @@
-{{-- resources/views/admin/puestos.blade.php --}}
+{{-- resources/views/admin/direcciones.blade.php --}}
 <x-dashboard-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Puesto</h1>
+        <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Direcciones</h1>
         
         <x-success-message />
         <x-error-message />
 
-
         <!-- Acciones -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-            <a href="{{ route('puestos.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
-                <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear nuevo puesto
+            <a href="{{ route('direcciones.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+                <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear nuevo direccion
             </a>
             <!-- Search Form --> 
             <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-1/3">
 
-                <form method="GET" action="{{ route('puestos.index') }}" class="relative flex-1">
+                <form method="GET" action="{{ route('direcciones.index') }}" class="relative flex-1">
                     <input 
                         type="text" 
                         name="search" 
                         value="{{ request('search') }}"
-                        placeholder="Buscar puesto..." 
+                        placeholder="Buscar direccion..." 
                         class="w-full border-gray-300 rounded-xl py-2 pl-10 pr-4 focus:ring-blue-500 focus:border-blue-500"
                     >
                     <button type="submit" class="absolute left-3 top-2.5 text-gray-400 hover:text-gray-600">
                         <i data-feather="search" class="w-4 h-4"></i>
                     </button>
                     @if(request('search'))
-                        <a href="{{ route('puestos.index') }}" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600">
+                        <a href="{{ route('direcciones.index') }}" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600">
                             <i data-feather="x" class="w-4 h-4"></i>
                         </a>
                     @endif
@@ -40,23 +39,21 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50 text-sm text-gray-600">
                     <tr>
-                        <x-th>Nombre del puesto</x-th>
+                        <x-th>Nombre del direccion</x-th>
                         <x-th>Descripción</x-th>
-                        <x-th>Departamento</x-th>
                         <x-th class="text-center">Acciones</x-th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    @forelse($puestos as $puesto)
+                    @forelse($direcciones as $direccion)
                         <tr>
-                            <x-td>{{ $puesto->nombre_puesto }}</x-td>
-                            <x-td>{{ $puesto->descripcion_puesto ? Str::limit($puesto->descripcion_puesto, 75) : 'Sin Descripcion' }}</x-td>
-                            <x-td>{{ $puesto->departamento ? $puesto->departamento->nombre_departamento : 'Sin departamento' }}</x-td>
+                            <x-td>{{ $direccion->nombre_direccion }}</x-td>
+                            <x-td>{{ $direccion->descripcion_direccion ? Str::limit($direccion->descripcion_direccion, 75) : 'Sin Descripcion' }}</x-td>
                             <x-td class="text-center">
                                 <x-action-links 
-                                    :edit-url="route('puestos.edit', $puesto->idPuesto)"
-                                    :show-url="route('puestos.show', $puesto->idPuesto)"
-                                    :delete-url="route('puestos.destroy', $puesto->idPuesto)"
+                                    :edit-url="route('direcciones.edit', $direccion->idDireccion)"
+                                    :show-url="route('direcciones.show', $direccion->idDireccion)"
+                                    :delete-url="route('direcciones.destroy', $direccion->idDireccion)"
                                 />
                             </x-td>
                         </tr>

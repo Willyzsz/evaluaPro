@@ -71,7 +71,7 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
                 'destroy' => 'departamentos.destroy',
             ]);
         Route::resource('direcciones', DireccionController::class)->parameters([
-            'direcciones' => 'direcciones'
+            'direcciones' => 'direccion'
             ])->names([
                 'index' => 'direcciones.index',
                 'create' => 'direcciones.create',

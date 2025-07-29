@@ -110,8 +110,16 @@ class TemaController extends Controller
 
     public function destroy(Tema $tema): RedirectResponse
     {
-        $tema->delete();
-        return redirect()->route('temas.index')->with('success', 'Tema eliminado exitosamente.');
+        try {
+            $tema->delete();
+            return redirect()->route('tema.index')
+                ->with('success', 'Puesto eliminado exitosamente.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect()->route('tema.index')
+                    ->with('error', 'No se puede eliminar el tema porque está relacionada con otros registros.');
+            }
+        }
     }
 
 }

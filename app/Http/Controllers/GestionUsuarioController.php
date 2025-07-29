@@ -114,8 +114,16 @@ class GestionUsuarioController extends Controller
 
     public function destroy(Usuario $usuario): RedirectResponse
     {
-        $usuario->delete();
-        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
+        try {
+            $usuario->delete();
+            return redirect()->route('usuario.index')
+                ->with('success', 'Puesto eliminado exitosamente.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect()->route('usuario.index')
+                    ->with('error', 'No se puede eliminar el usuario porque está relacionada con otros registros.');
+            }
+        }
     }
 }
 

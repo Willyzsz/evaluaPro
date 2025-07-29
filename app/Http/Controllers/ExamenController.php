@@ -86,7 +86,15 @@ class ExamenController extends Controller
 
     public function destroy(Examen $examen): RedirectResponse
     {
-        $examen->delete();
-        return redirect()->route('examenes.index')->with('success', 'Examen eliminado exitosamente.');
+        try {
+            $examen->delete();
+            return redirect()->route('examen.index')
+                ->with('success', 'Puesto eliminado exitosamente.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect()->route('examen.index')
+                    ->with('error', 'No se puede eliminar el examen porque está relacionada con otros registros.');
+            }
+        }
     }
 }

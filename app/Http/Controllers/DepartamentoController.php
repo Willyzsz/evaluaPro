@@ -84,7 +84,15 @@ class DepartamentoController extends Controller
 
     public function destroy(Departamento $departamento): RedirectResponse
     {
-        $departamento->delete();
-        return redirect()->route('departamentos.index')->with('success', 'Departamento eliminado exitosamente.');
+        try {
+            $departamento->delete();
+            return redirect()->route('departamento.index')
+                ->with('success', 'Puesto eliminado exitosamente.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect()->route('departamento.index')
+                    ->with('error', 'No se puede eliminar el departamento porque está relacionada con otros registros.');
+            }
+        }
     }
 }

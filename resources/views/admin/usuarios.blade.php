@@ -4,6 +4,8 @@
         <h1 class="text-3xl font-bold text-white mb-6 drop-shadow-lg">Gestión de Usuarios</h1>
         
         <x-success-message />
+        <x-error-message />
+
 
         <!-- Acciones -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">

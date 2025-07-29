@@ -84,7 +84,15 @@ class PuestoController extends Controller
 
     public function destroy(Puesto $puesto): RedirectResponse
     {
-        $puesto->delete();
-        return redirect()->route('puestos.index')->with('success', 'Puesto eliminado exitosamente.');
+        try {
+            $puesto->delete();
+            return redirect()->route('puesto.index')
+                ->with('success', 'Puesto eliminado exitosamente.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect()->route('puesto.index')
+                    ->with('error', 'No se puede eliminar el puesto porque está relacionada con otros registros.');
+            }
+        }
     }
 }
