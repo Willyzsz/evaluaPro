@@ -113,11 +113,11 @@ class TemaController extends Controller
     {
         try {
             $tema->delete();
-            return redirect()->route('tema.index')
-                ->with('success', 'Puesto eliminado exitosamente.');
+            return redirect()->route('temas.index')
+                ->with('success', 'Tema eliminado exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect()->route('tema.index')
+                return redirect()->route('temas.index')
                     ->with('error', 'No se puede eliminar el tema porque está relacionada con otros registros.');
             }
         }

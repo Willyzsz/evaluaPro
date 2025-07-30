@@ -4,6 +4,12 @@
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-3xl font-bold text-white drop-shadow-lg">Detalles del Examen</h1>
             <div class="flex items-center gap-3">
+                @if(request()->query('reticula'))
+                <a href="{{ route('subReticulas.index', ['reticula' => request()->query('reticula')]) }}"
+                    class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition">
+                    <i data-feather="arrow-left" class="mr-2 w-5 h-5"></i> Volver a la Reticula
+                </a>
+                @endif
                 <a href="{{ route('examenes.edit', $examen->idExamen) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                     <i data-feather="edit" class="mr-2 w-5 h-5"></i> Editar
                 </a>

@@ -1,6 +1,16 @@
-@if (session()->has('error'))
+@if (session()->has('error') || $errors->any())
     <div id="error-alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-        <span class="block sm:inline">{{ session('error') }}</span>
+        {{-- Display session error --}}
+        @if (session()->has('error'))
+            <span class="block sm:inline">{{ session('error') }}</span>
+        @endif
+
+        {{-- Display validation errors --}}
+        @foreach ($errors->all() as $error)
+            <span class="block sm:inline">{{ $error }}</span>
+        @endforeach
+
+        {{-- Close button --}}
         <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="document.getElementById('error-alert').style.display='none'">
             <svg class="fill-current h-6 w-6 text-red-500" role="button"
                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -9,4 +19,4 @@
             </svg>
         </span>
     </div>
-@endif 
+@endif

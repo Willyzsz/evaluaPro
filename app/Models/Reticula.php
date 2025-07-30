@@ -79,4 +79,20 @@ class Reticula extends Model
     {
         return $this->hasMany('App\Models\ReticulasTema', 'reticula_id', 'idReticula');
     }
+
+    public function temas()
+    {
+        return $this->belongsToMany(Tema::class, 'reticulas_temas', 'reticula_id', 'tema_id');
+    }
+
+    public function examenes()
+    {
+        return $this->belongsToMany(Examen::class, 'reticulas_examenes', 'reticula_id', 'examen_id')
+                    ->with('tema'); 
+    }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'reticulas_cursos', 'reticula_id', 'curso_id');
+    }
 }

@@ -84,11 +84,11 @@ class CursoController extends Controller
         try {
             $curso->delete();
             return redirect()->route('cursos.index')
-                ->with('success', 'Dirección eliminada exitosamente.');
+                ->with('success', 'Curso eliminada exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
                 return redirect()->route('cursos.index')
-                    ->with('error', 'No se puede eliminar la dirección porque está relacionada con otros registros.');
+                    ->with('error', 'No se puede eliminar el Curso porque está relacionada con otros registros.');
             }
         }
     }

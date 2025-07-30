@@ -18,6 +18,7 @@ return [
     'integer' => 'El campo :attribute debe ser un número entero.',
     'confirmation' => 'El campo :attribute no coincide.',
     'confirmed' => 'El campo :attribute no coincide.',
+    'unique' => 'El :attribute ya está asignado a esta retícula.',
 
     'attributes' => [
         'nombre_examen' => 'Nombre del examen',
@@ -29,5 +30,7 @@ return [
         'puesto_usuario' => 'Puesto',
         'estatus' => 'Estado',
         'fecha_ingreso' => 'Fecha de Ingreso',
+        'examen_id' => 'examen',
+        'curso_id'  => 'curso',
     ],
 ];

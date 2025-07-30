@@ -62,7 +62,7 @@
                         <i data-feather="trash-2" class="mr-2 w-5 h-5"></i> Eliminar Reticula
                     </button>
                 </form>
-                <a href="{{ route('preguntas.index', $reticula) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+                <a href="{{ route('subReticulas.index', $reticula) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                     <i data-feather="plus" class="mr-2 w-5 h-5"></i> Crear/Ver Temas,Examenes y Cursos
                 </a>
             </div>

@@ -92,11 +92,11 @@ class ReticulaController extends Controller
     {
         try {
             $reticula->delete();
-            return redirect()->route('reticula.index')
+            return redirect()->route('reticulas.index')
                 ->with('success', 'Reticula eliminada exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect()->route('reticula.index')
+                return redirect()->route('reticulas.index')
                     ->with('error', 'No se puede eliminar la reticula porque está relacionada con otros registros.');
             }
         }

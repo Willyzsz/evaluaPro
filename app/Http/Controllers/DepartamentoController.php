@@ -87,11 +87,11 @@ class DepartamentoController extends Controller
     {
         try {
             $departamento->delete();
-            return redirect()->route('departamento.index')
+            return redirect()->route('departamentos.index')
                 ->with('success', 'Puesto eliminado exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect()->route('departamento.index')
+                return redirect()->route('departamentos.index')
                     ->with('error', 'No se puede eliminar el departamento porque está relacionada con otros registros.');
             }
         }

@@ -117,11 +117,11 @@ class GestionUsuarioController extends Controller
     {
         try {
             $usuario->delete();
-            return redirect()->route('usuario.index')
-                ->with('success', 'Puesto eliminado exitosamente.');
+            return redirect()->route('usuarios.index')
+                ->with('success', 'Usuario eliminado exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect()->route('usuario.index')
+                return redirect()->route('usuarios.index')
                     ->with('error', 'No se puede eliminar el usuario porque está relacionada con otros registros.');
             }
         }

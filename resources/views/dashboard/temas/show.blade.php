@@ -4,6 +4,13 @@
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-3xl font-bold text-white drop-shadow-lg">Detalles del Tema</h1>
             <div class="flex items-center gap-3">
+                @if(request()->query('reticula'))
+                <a href="{{ route('subReticulas.index', ['reticula' => request()->query('reticula')]) }}"
+                    class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition">
+                    <i data-feather="arrow-left" class="mr-2 w-5 h-5"></i> Volver a la Reticula
+                </a>
+                @endif
+
                 <a href="{{ route('temas.edit', $tema->idTema) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                     <i data-feather="edit" class="mr-2 w-5 h-5"></i> Editar
                 </a>
@@ -22,7 +29,7 @@
 
                 <!-- Tema URL -->
                 <div class="md:col-span-2">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Tema</h3>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Tema URL</h3>
                     <p class="text-gray-600">{{ $tema->tema_url ? $tema->tema_url : 'Sin URL asignado' }}</p>
                 </div>
 

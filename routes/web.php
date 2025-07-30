@@ -14,6 +14,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReticulaController;
 use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\SubReticulaController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -145,6 +146,17 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'edit' => 'reticulas.edit',
         'update' => 'reticulas.update',
         'destroy' => 'reticulas.destroy',
+    ]);
+    Route::resource('reticulas.subReticula', SubReticulaController::class)->parameters([
+        'reticulas' => 'reticula',
+        'subReticulas' => 'subReticula'
+    ])->names([
+        'index' => 'subReticulas.index',
+        'create' => 'subReticulas.create',
+        'store' => 'subReticulas.store',
+        'edit' => 'subReticulas.edit',
+        'update' => 'subReticulas.update',
+        'destroy' => 'subReticulas.destroy',
     ]);
     Route::get('/gestion_reticula', [ReticulaController::class, 'index']);
 });

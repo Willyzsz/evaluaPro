@@ -89,11 +89,11 @@ class ExamenController extends Controller
     {
         try {
             $examen->delete();
-            return redirect()->route('examen.index')
+            return redirect()->route('examenes.index')
                 ->with('success', 'Examen eliminado exitosamente.');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect()->route('examen.index')
+                return redirect()->route('examenes.index')
                     ->with('error', 'No se puede eliminar el examen porque está relacionada con otros registros.');
             }
         }
