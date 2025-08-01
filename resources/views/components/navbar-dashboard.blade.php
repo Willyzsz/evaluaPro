@@ -14,6 +14,7 @@
         <x-a-navbar href="{{ url('/gestion_puestos') }}">Ver Puestos</x-a-navbar>
         @endif
         <x-a-navbar href="{{ url('/gestion_reticula') }}">Ver Reticulas</x-a-navbar>
+        <x-a-navbar href="{{ url('/revisar_examenes') }}">Revisar Examenes</x-a-navbar>
       </div>
       <div class="flex items-center">
         <x-welcome-button variant="minimalist" />
