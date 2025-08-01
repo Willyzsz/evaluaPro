@@ -5,22 +5,6 @@
           <h2 class="text-3xl font-bold text-gray-800">
             Bienvenido, {{ $usuario->usuario }}
           </h2>
-          
-          <div class="bg-white text-pink-800 p-4 rounded-xl shadow-md">
-            <h2 class="font-bold text-lg">👤 Perfil </h2>
-            <p>Informacion de perfil.</p>
-          </div>          
-
-          <div class="bg-white text-pink-800 p-4 rounded-xl shadow-md">
-            <h2 class="font-bold text-lg">🚀 Perfil Selectivo</h2>
-            <p>Opciones de crecimiento profesional.</p>
-          </div>
-
-          <div class="bg-white text-pink-800 p-4 rounded-xl shadow-md">
-            <h2 class="font-bold text-lg">📌 Perfil Puesto Actual</h2>
-            <p>Rol actual y responsabilidades.</p>
-          </div>
-
         </header>
 
         <!-- Próximo Examen -->
@@ -31,72 +15,57 @@
             <h3 class="text-xl font-semibold text-gray-800 mb-1">
               📅 Próximo examen
             </h3>
+            @if($primerExamen)
             <p class="text-gray-700">
-              Título: <strong>Seguridad Industrial</strong>
+              Título: <strong>{{$primerExamen->nombre_examen}}</strong>
             </p>
-            <p class="text-gray-500">Fecha: 20 de mayo de 2025</p>
+            @else
+            <p class="text-gray-700">
+              No tienes exámenes pendientes.
+            </p>
+            @endif
           </div>
         </section>
 
         <!-- Estadísticas -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
-            class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500"
+          class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500"
           >
-            <h4 class="text-lg font-semibold text-blue-700 mb-2">
-              📊 Porcentaje de habilidades obtenidas
-            </h4>
-            <p class="text-gray-600">
-              Último promedio:
-              <span class="text-xl font-bold text-blue-600">85%</span>
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500"
-          >
-            <h4 class="text-lg font-semibold text-green-700 mb-2">
-              📁 Historial de exámenes
-            </h4>
+          <h4 class="text-lg font-semibold text-green-700 mb-2">
+            📁 Historial de exámenes
+          </h4>
+          @foreach($examenesRealizados as $examenRealizado)
             <ul class="list-disc list-inside text-gray-700">
-              <li>Introducción a la Empresa (92%)</li>
-              <li>Ética Laboral (87%)</li>
+             <li>
+                {{ $examenRealizado->examen->nombre_examen }} 
+                @if($examenRealizado->calificacion)
+                    - Calificación: {{ $examenRealizado->calificacion }}
+                @endif
+              </li>
             </ul>
           </div>
+          @endforeach
         </section>
 
         <!-- Perfil de Puestos -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          <div
+        <div
             class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500"
           >
             <h4 class="text-lg font-semibold text-purple-700 mb-2">
               🧩 Perfil de puesto actual
             </h4>
             <p class="text-gray-700">
-              Nombre del puesto: <strong>Operador de Producción</strong>
+              Nombre del puesto: <strong>{{$infoPuesto->nombre_puesto}} </strong>
             </p>
             <p class="text-gray-600 mt-2">
-              Descripción: Realiza tareas operativas en línea de ensamblaje y
-              asegura el cumplimiento de los estándares de calidad.
-            </p>
-            <p class="text-gray-500 mt-2">Área: Manufactura</p>
-          </div>
-
-          <div
-            class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-pink-500"
-          >
-            <h4 class="text-lg font-semibold text-pink-700 mb-2">
-              🎯 Perfil de puesto selectivo
-            </h4>
-            <p class="text-gray-700">
-              Nombre del puesto: <strong>Supervisor de Calidad</strong>
+              Descripción de puesto: {{$infoPuesto->descripcion_puesto ? $infoPuesto->descripcion_puesto : 'No hay descripcion de puesto' }} 
             </p>
             <p class="text-gray-600 mt-2">
-              Descripción: Responsable de supervisar los procesos de control de
-              calidad y coordinar auditorías internas.
+              Descripcion de departamento: {{$infoPuesto->departamento->descripcion_departamento ? $infoPuesto->descripcion_puesto : 'No hay descripcion de departamento' }}
             </p>
-            <p class="text-gray-500 mt-2">Área: Aseguramiento de Calidad</p>
+            <p class="text-gray-500 mt-2">Departamento:{{$infoPuesto->departamento->nombre_departamento}}</p>
           </div>
         </section>
       </main>

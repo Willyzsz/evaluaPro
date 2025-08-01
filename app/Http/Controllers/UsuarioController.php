@@ -23,8 +23,7 @@ use Illuminate\Database\QueryException;
 
 class UsuarioController extends Controller
 {
-    private function getReticulaData(\App\Models\Usuario $usuario): array
-    {
+    private function getReticulaData(\App\Models\Usuario $usuario): array {
         $puesto = Puesto::find($usuario->puesto_usuario);
 
         $reticula = Reticula::with(['temas', 'examenes', 'cursos'])
@@ -79,7 +78,32 @@ class UsuarioController extends Controller
     public function index(): View
     {
         $usuario = auth()->user();
-        return view('welcome', compact('usuario'));
+        $infoPuesto = Puesto::with('departamento')
+        ->where('idPuesto', $usuario->puesto_usuario)->first();
+
+        $examenesRealizados = ExamenRealizado::with('examen')
+        ->where('usuario_id', $usuario->idUsuario)->get();
+        
+        $reticula = Reticula::where('puesto_id', $infoPuesto->idPuesto)
+            ->where('departamento_id', $infoPuesto->departamento_id)
+            ->first();
+
+        $reticulaExamenes = ReticulaExamen::with('examen')
+        ->where('reticula_id', $reticula->idReticula)->get();
+
+        $examenesContestadosIds = ExamenRealizado::where('usuario_id', $usuario->idUsuario)
+        ->pluck('examen_id')
+        ->toArray();
+            
+        $primerExamenNoContestado = $reticulaExamenes
+        ->filter(function ($re) use ($examenesContestadosIds) {
+            return !in_array($re->examen_id, $examenesContestadosIds);
+        })
+        ->first();
+
+        $primerExamen = $primerExamenNoContestado?->examen;
+
+        return view('welcome', compact('usuario', 'infoPuesto', 'examenesRealizados', 'primerExamen'));
     }
     public function reticula(): View
     {
