@@ -28,12 +28,19 @@
             </div>
 
             <!-- Password -->
-            <div>
+            <div class="md:col-span-2">
                 <x-input-label for="password" :value="'Contraseña'" />
-                <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                <div class="relative">
+                    <x-text-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+                    <button type="button"
+                        onclick="togglePasswordVisibility('password', this)"
+                        class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700">
+                        <i data-feather="eye" class="w-5 h-5"></i>
+                    </button>
+                </div>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
@@ -59,16 +66,6 @@
                 @endif
             </div>
         </form>
-
-        <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button
-          class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
-        >
-          <i data-feather="log-out" class="w-4 h-4"></i>
-          Cerrar sesión
-        </button>
-        
       </form>
     </div>
 </x-gradient-layout>

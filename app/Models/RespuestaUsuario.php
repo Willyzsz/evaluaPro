@@ -31,9 +31,9 @@ class RespuestaUsuario extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function examenesRealizado()
+    public function examenRealizado()
     {
-        return $this->belongsTo('App\Models\ExamenesRealizado', 'examen_realizado_id', 'idExamenRealizado');
+        return $this->belongsTo('App\Models\ExamenRealizado', 'examen_realizado_id', 'idExamenRealizado');
     }
 
     /**

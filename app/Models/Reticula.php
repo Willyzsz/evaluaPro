@@ -79,6 +79,13 @@ class Reticula extends Model
     {
         return $this->hasMany('App\Models\ReticulasTema', 'reticula_id', 'idReticula');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reticulaItems()
+    {
+        return $this->hasMany('App\Models\ReticulaItem', 'reticula_id', 'idReticula');
+    }
 
     public function temas()
     {

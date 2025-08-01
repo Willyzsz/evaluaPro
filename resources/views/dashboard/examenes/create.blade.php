@@ -38,14 +38,6 @@
                         <x-input-error :messages="$errors->get('tema_id')" class="mt-2" />
                     </div>
 
-                    <!-- Duración -->
-                    <div>
-                        <x-input-label for="duracion_examen" value="Duración (minutos)" />
-                        <x-text-input id="duracion_examen" name="duracion_examen" type="number" class="mt-1 block w-full" 
-                            value="{{ old('duracion_examen') }}" min="1" />
-                        <x-input-error :messages="$errors->get('duracion_examen')" class="mt-2" />
-                    </div>
-
                     <!-- Descripción -->
                     <div class="md:col-span-2">
                         <x-input-label for="descripcion_examen" value="Descripción" />

@@ -40,14 +40,12 @@ class ExamenController extends Controller
         $request->validate([
             'nombre_examen' => 'required|string|max:255',
             'descripcion_examen' => 'nullable|string',
-            'duracion_examen' => 'nullable|integer|min:1',
             'tema_id' => 'required|exists:temas,idTema',
         ]);
 
         Examen::create([
             'nombre_examen' => $request->nombre_examen,
             'descripcion_examen' => $request->descripcion_examen,
-            'duracion_examen' => $request->duracion_examen,
             'tema_id' => $request->tema_id,
         ]);
 

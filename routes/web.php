@@ -29,7 +29,7 @@ Route::get('/', function () {
             case 'capacitador':
                 return redirect('/dashboard');
             case 'usuario':
-                return redirect('/usuario');
+                return redirect('/welcome');
             default:
                 return redirect()->route('login');
         }
@@ -161,20 +161,14 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
     Route::get('/gestion_reticula', [ReticulaController::class, 'index']);
 });
 
-Route::middleware(['auth', 'rol:capacitador'])->group(function () {
-    Route::get('/capacitador', [CapacitadorController::class, 'index']);
-});
-
-Route::middleware(['auth', 'rol:capacitador,usuario'])->group(function () {
-    Route::get('/capacitador_usuario', [CapacitadorController::class, 'index']);
-});
-
-Route::middleware(['auth', 'rol:usuario'])->group(function () {
-    Route::get('/usuario', [UsuarioController::class, 'index']);
-});
-
 Route::middleware(['auth', 'rol:admin,capacitador,usuario'])->group(function () {
-    Route::get('/welcome', [OverallController::class, 'welcome']);
+    Route::get('/welcome', [UsuarioController::class, 'index']);
+    Route::get('/reticula_usuario', [UsuarioController::class, 'reticula']);
+    Route::get('generales/{examen}', [UsuarioController::class, 'examen'])->name('generales');
+    Route::post('/respuesta_examen/{examen}', [UsuarioController::class, 'respuesta']);
+    Route::get('/resultados_usuario', [UsuarioController::class, 'resultados']);
+    Route::get('resultado_examen/{examen}', [UsuarioController::class, 'resultadoExamen'])->name('resultado_examen');
+
 });
 
 require __DIR__.'/auth.php';

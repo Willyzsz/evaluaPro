@@ -28,6 +28,7 @@ class ExamenRealizado extends Model
      * @var string
      */
     protected $table = 'examenes_realizados';
+    public $timestamps = false;
 
     /**
      * The primary key for the model.
@@ -60,9 +61,9 @@ class ExamenRealizado extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function examene()
+    public function examen()
     {
-        return $this->belongsTo('App\Models\Examene', 'examen_id', 'idExamen');
+        return $this->belongsTo('App\Models\Examen', 'examen_id', 'idExamen');
     }
 
     /**

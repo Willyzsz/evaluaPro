@@ -32,14 +32,6 @@
                     <p class="text-gray-600">{{ $examen->tema ? $examen->tema->nombre_tema : 'Sin tema asignado' }}</p>
                 </div>
 
-                <!-- Duración -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Duración</h3>
-                    @if($examen->duracion_examen != '')
-                    <p class="text-gray-600">{{ $examen->duracion_examen }} minutos</p>
-                    @endif
-                </div>
-
                 <!-- Descripción -->
                 <div class="md:col-span-2">
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Descripción</h3>

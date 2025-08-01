@@ -10,10 +10,6 @@ use Illuminate\View\View;
 
 class OverallController extends Controller
 {
-    public function welcome(): View
-    {
-        return view('welcome');
-    }
     public function dashboard(): View
     {
         return view('dashboard');

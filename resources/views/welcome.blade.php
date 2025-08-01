@@ -1,64 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EvaluaPro - Plataforma de Exámenes</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://unpkg.com/feather-icons"></script>
-  </head>
-  <body class="bg-gradient-to-br from-blue-50 to-cyan-100 min-h-screen font-sans" >
-
-    <a href="/login">Login</a>
-    <x-logout-button/>
-    <a href="/dashboard">dashboard</a>
-
-    <div class="flex min-h-screen">
-      <!-- Menú lateral -->
-      <aside class="w-64 bg-white shadow-xl p-6 flex flex-col justify-between">
-        <div>
-          <h1 class="text-2xl font-bold text-cyan-600 mb-8">📘 EvaluaPro</h1>
-          <nav class="space-y-4">
-            <a
-              href="#"
-              class="flex items-center text-gray-700 hover:text-cyan-600 transition"
-            >
-              <i data-feather="home" class="mr-2"></i> Dashboard
-            </a>
-            <a
-              href="#"
-              class="flex items-center text-gray-700 hover:text-cyan-600 transition"
-            >
-              <i data-feather="file-text" class="mr-2"></i> Exámenes
-            </a>
-            <a
-              href="#"
-              class="flex items-center text-gray-700 hover:text-cyan-600 transition"
-            >
-              <i data-feather="bar-chart-2" class="mr-2"></i> Resultados
-            </a>
-            <a
-              href="#"
-              class="flex items-center text-gray-700 hover:text-cyan-600 transition"
-            >
-              <i data-feather="settings" class="mr-2"></i> Configuración
-            </a>
-          </nav>
-        </div>
-        <div class="text-sm text-gray-400">&copy; 2025 EvaluaPro</div>
-      </aside>
-
+<x-welcome-layout>
       <!-- Contenido principal -->
       <main class="flex-1 p-10">
         <header class="flex justify-between items-center mb-10">
           <h2 class="text-3xl font-bold text-gray-800">
-            Bienvenido, Juan Pérez
+            Bienvenido, {{ $usuario->usuario }}
           </h2>
-          <span class="text-gray-500">Mi perfil</span>
           
+          <div class="bg-white text-pink-800 p-4 rounded-xl shadow-md">
+            <h2 class="font-bold text-lg">👤 Perfil </h2>
+            <p>Informacion de perfil.</p>
+          </div>          
+
           <div class="bg-white text-pink-800 p-4 rounded-xl shadow-md">
             <h2 class="font-bold text-lg">🚀 Perfil Selectivo</h2>
             <p>Opciones de crecimiento profesional.</p>
@@ -148,10 +100,4 @@
           </div>
         </section>
       </main>
-    </div>
-
-    <script>
-      feather.replace();
-    </script>
-  </body>
-</html>
+</x-welcome-layout>
