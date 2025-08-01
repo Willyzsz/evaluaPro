@@ -14,6 +14,8 @@
         <i data-feather="bar-chart-2" class="mr-2"></i> Resultados
       </a>
     </nav>
+    <br>
+    <x-logout-button/>
   </div>
   <div class="text-sm text-gray-400">&copy; {{ date('Y') }} EvaluaPro</div>
 </aside>

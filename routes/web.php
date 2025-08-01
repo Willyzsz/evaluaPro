@@ -13,6 +13,7 @@ use App\Http\Controllers\TemaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\ReticulaController;
+use App\Http\Controllers\RevisarController;
 use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\SubReticulaController;
 
@@ -159,6 +160,22 @@ Route::middleware(['auth', 'rol:admin,capacitador'])->group(function () {
         'destroy' => 'subReticulas.destroy',
     ]);
     Route::get('/gestion_reticula', [ReticulaController::class, 'index']);
+    Route::resource('revisar', RevisarController::class)->parameters([
+        'revisar' => 'usuario'
+    ])->names([
+        'index' => 'revisar.index',
+        'create' => 'revisar.create',
+        'store' => 'revisar.store',
+        'show' => 'revisar.show',
+        'edit' => 'revisar.edit',
+        'update' => 'revisar.update',
+        'destroy' => 'revisar.destroy',
+    ]);
+    Route::get('revisar_usuario_examen/{usuario}', [RevisarController::class, 'examenesRevision'])->name('revisar_usuario_examen');    
+    Route::get('revisar_info_examen/{usuario}/{examen}', [RevisarController::class, 'infoExamen'])->name('revisar_info_examen');    
+    Route::put('examen_realizado/{usuario}/{examen}', [RevisarController::class, 'update'])->name('examen_realizado.update');
+    Route::get('/revisar_examenes', [RevisarController::class, 'index']);
+
 });
 
 Route::middleware(['auth', 'rol:admin,capacitador,usuario'])->group(function () {
@@ -168,7 +185,6 @@ Route::middleware(['auth', 'rol:admin,capacitador,usuario'])->group(function () 
     Route::post('/respuesta_examen/{examen}', [UsuarioController::class, 'respuesta']);
     Route::get('/resultados_usuario', [UsuarioController::class, 'resultados']);
     Route::get('resultado_examen/{examen}', [UsuarioController::class, 'resultadoExamen'])->name('resultado_examen');
-
 });
 
 require __DIR__.'/auth.php';

@@ -84,15 +84,15 @@
 
                                 @php
                                     $respuesta = $respuestasUsuario->firstWhere('pregunta_id', $pregunta->idPregunta);
+                                    $noCalificada = is_null($examenRealizado->calificacion) && is_null($examenRealizado->usuarioCalificador);                                
                                 @endphp
 
                                 @if($respuesta)
                                     @if(!is_null($respuesta->correcta))
                                         @if($respuesta->correcta == 1)
                                             <p class="text-sm text-green-600 font-medium">Correcta</p>
-                                        @elseif(is_null($examenRealizado->calificacion) && is_null($examenRealizado->usuarioCalificador))
+                                        @elseif($noCalificada)
                                             <p class="text-sm text-yellow-600 font-medium">Aún no calificada</p>
-                                        @elseif($examenRealizado->calificacion && $examenRealizado->usuarioCalificador)
                                         @else
                                             <p class="text-sm text-red-600 font-medium">Incorrecta</p>
                                         @endif

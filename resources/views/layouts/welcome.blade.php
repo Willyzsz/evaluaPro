@@ -8,9 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   </head>
   <body class="bg-gradient-to-br from-blue-50 to-cyan-100 min-h-screen font-sans" >
-    <x-logout-button/>
     <div class="flex min-h-screen">
-        <x-lateral-menu/>
+      <x-lateral-menu/>
         {{ $slot }}
     </div>
     <script>

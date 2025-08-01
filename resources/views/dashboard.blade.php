@@ -73,6 +73,15 @@
         link="/gestion_reticula"
         linkLabel="Ver reticulas →"
       />
+
+      <x-card-dashboard 
+        color="blue"
+        icon="file-text"
+        title="Revision de Exámenes"
+        description="Revisar exámenes para los empleados."
+        link="/revisar_examenes"
+        linkLabel="Revisar exámenes →"
+      />
     </div>
   </div>
 </x-gradient-layout>
