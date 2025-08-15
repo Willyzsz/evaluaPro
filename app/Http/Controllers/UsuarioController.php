@@ -23,20 +23,25 @@ use Illuminate\Database\QueryException;
 
 class UsuarioController extends Controller
 {
-    private function getReticulaData(\App\Models\Usuario $usuario): array {
-        $puesto = Puesto::find($usuario->puesto_usuario);
-
+    private function getReticulaData(\App\Models\Usuario $usuario): array
+    {
+        // Get puesto or null
+        $puesto = Puesto::find($usuario?->puesto_usuario);
+    
+        // Get reticula with relationships or null
         $reticula = Reticula::with(['temas', 'examenes', 'cursos'])
-            ->where('puesto_id', $puesto->idPuesto)
-            ->where('departamento_id', $puesto->departamento_id)
+            ->where('puesto_id', $puesto?->idPuesto)
+            ->where('departamento_id', $puesto?->departamento_id)
             ->first();
-
-        $examenesRealizados = ExamenRealizado::where('usuario_id', $usuario->idUsuario)
-            ->whereIn('examen_id', $reticula->examenes->pluck('idExamen'))
+    
+        // Get realizados only if reticula exists, else empty array
+        $examenesRealizados = ExamenRealizado::where('usuario_id', $usuario?->idUsuario)
+            ->whereIn('examen_id', $reticula?->examenes?->pluck('idExamen') ?? [])
             ->pluck('examen_id')
             ->toArray();
-        
-        $itemsTemas = $reticula->temas->map(function($t) {
+    
+        // Ensure we always work with a collection
+        $itemsTemas = $reticula?->temas?->map(function ($t) {
             return (object)[
                 'tipo'    => 'tema',
                 'id'      => $t->idTema,
@@ -44,9 +49,9 @@ class UsuarioController extends Controller
                 'detalle' => $t->descripcion_tema ?? null,
                 'link'    => $t->tema_url,
             ];
-        });
-
-        $itemsExamenes = $reticula->examenes->map(function($e) {
+        }) ?? collect();
+    
+        $itemsExamenes = $reticula?->examenes?->map(function ($e) {
             return (object)[
                 'tipo'    => 'examen',
                 'id'      => $e->idExamen,
@@ -54,9 +59,9 @@ class UsuarioController extends Controller
                 'detalle' => optional($e->tema)->nombre_tema,
                 'link'    => route('generales', $e->idExamen),
             ];
-        });
-
-        $itemsCursos = $reticula->cursos->map(function($c) {
+        }) ?? collect();
+    
+        $itemsCursos = $reticula?->cursos?->map(function ($c) {
             return (object)[
                 'tipo'    => 'curso',
                 'id'      => $c->idCurso,
@@ -64,47 +69,59 @@ class UsuarioController extends Controller
                 'detalle' => $c->descripcion_curso ?? null,
                 'link'    => $c->curso_url,
             ];
-        });
-
+        }) ?? collect();
+    
+        // Merge all into a single collection
         $subReticulas = collect()
             ->merge($itemsTemas)
             ->merge($itemsExamenes)
             ->merge($itemsCursos)
             ->values();
-
+    
         return compact('reticula', 'subReticulas', 'examenesRealizados');
     }
+    
 
     public function index(): View
     {
         $usuario = auth()->user();
+
         $infoPuesto = Puesto::with('departamento')
-        ->where('idPuesto', $usuario->puesto_usuario)->first();
+            ->where('idPuesto', $usuario?->puesto_usuario)
+            ->first();
 
         $examenesRealizados = ExamenRealizado::with('examen')
-        ->where('usuario_id', $usuario->idUsuario)->get();
-        
-        $reticula = Reticula::where('puesto_id', $infoPuesto->idPuesto)
-            ->where('departamento_id', $infoPuesto->departamento_id)
+            ->where('usuario_id', $usuario?->idUsuario)
+            ->get();
+
+        $reticula = Reticula::where('puesto_id', $infoPuesto?->idPuesto)
+            ->where('departamento_id', $infoPuesto?->departamento_id)
             ->first();
 
         $reticulaExamenes = ReticulaExamen::with('examen')
-        ->where('reticula_id', $reticula->idReticula)->get();
+            ->where('reticula_id', $reticula?->idReticula)
+            ->get();
 
-        $examenesContestadosIds = ExamenRealizado::where('usuario_id', $usuario->idUsuario)
-        ->pluck('examen_id')
-        ->toArray();
-            
+        $examenesContestadosIds = ExamenRealizado::where('usuario_id', $usuario?->idUsuario)
+            ->pluck('examen_id')
+            ->toArray();
+
         $primerExamenNoContestado = $reticulaExamenes
-        ->filter(function ($re) use ($examenesContestadosIds) {
-            return !in_array($re->examen_id, $examenesContestadosIds);
-        })
-        ->first();
+            ->filter(function ($re) use ($examenesContestadosIds) {
+                return !in_array($re->examen_id, $examenesContestadosIds);
+            })
+            ->first();
 
         $primerExamen = $primerExamenNoContestado?->examen;
 
-        return view('welcome', compact('usuario', 'infoPuesto', 'examenesRealizados', 'primerExamen'));
+        return view('welcome', [
+            'usuario'             => $usuario,
+            'infoPuesto'          => $infoPuesto,
+            'examenesRealizados'  => $examenesRealizados,
+            'primerExamen'        => $primerExamen
+        ]);
     }
+
     public function reticula(): View
     {
         $usuario = auth()->user();

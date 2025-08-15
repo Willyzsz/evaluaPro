@@ -1,19 +1,24 @@
-{{-- resources/views/generales/reticulas/index.blade.php --}}
+{{-- resources/views/generales/reticulas.blade.php --}}
 <x-welcome-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <div class="flex items-center justify-between mb-6">
-            <h1 class="text-3xl font-bold text-black drop-shadow-lg">Temas de la Reticula: {{ $reticula->nombre_reticula }}</h1>            
-            <!-- Puesto -->
+        <h1 class="text-3xl font-bold text-black drop-shadow-lg">
+            Temas de la Reticula:
+            {{ $reticula?->nombre_reticula ?? 'No hay Reticula disponible' }}
+        </h1>           
+        <!-- Puesto -->
+        @if($reticula)
             <div>
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Puesto</h3>
-                <p class="text-gray-600">{{ $reticula->puesto ? $reticula->puesto->nombre_puesto : 'Sin puesto asignado' }}</p>
+                <p class="text-gray-600">{{ $reticula->puesto ?? 'Sin puesto asignado' }}</p>
             </div>
 
             <!-- Departamento -->
             <div>
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Departamento</h3>
-                <p class="text-gray-600">{{ $reticula->departamento ? $reticula->departamento->nombre_departamento : 'Sin departamento asignado' }}</p>
+                <p class="text-gray-600">{{ $reticula->departamento ?? 'Sin departamento asignado' }}</p>
             </div>
+        @endif
         </div>
         
         <x-success-message />
